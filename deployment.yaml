@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: buyer-service-ui-deployment
+  labels:
+    app: buyer-service-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: buyer-service-ui
+  template:
+    metadata:
+      labels:
+        app: buyer-service-ui
+    spec:
+      containers:
+        - name: buyer-service-ui
+          image: systeamorg/buyer-service-ui
+          env:
+            - name: PORT
+              value: "84"
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 84
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: buyer-service-ui
+  labels:
+    app: buyer-service-ui
+spec:
+  ports:
+    - port: 84
+      targetPort: 84
+      protocol: TCP
+      name: tcp
+      nodePort: 30084
+  type: NodePort
+  selector:
+    app: buyer-service-ui
