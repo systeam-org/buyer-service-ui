@@ -21,20 +21,20 @@ export function getLoginURL() {
 export function getBuyerEndPoint() {
 
     if (window.location.href.includes("localhost")){
-        return "http://localhost:30081/"
+        return "http://localhost:30081"
 
     }else{
-        return "https://buyerapi.systeambiz.com/"
+        return "https://buyerapi.systeambiz.com"
     }
 }
 
 export function getSellerUIEndPoint() {
 
     if (window.location.href.includes("localhost")){
-        return "http://localhost:30092/"
+        return "http://localhost:30092"
 
     }else{
-        return "https://seller.systeambiz.com/"
+        return "https://seller.systeambiz.com"
     }
 }
 
