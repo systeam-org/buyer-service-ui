@@ -48,8 +48,6 @@ export default function SellerProducts(props) {
             //return <th key={index}>{camelCase(key.toUpperCase().replace('_', "  "))}</th>
             return <th key={index}>{key}</th>
         })
-
-
     }
 
     function renderOrdersTableData() {
