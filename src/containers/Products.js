@@ -30,6 +30,8 @@ export default function Products(props) {
                     config.setCookie("email",JSON.parse(jsonPayload).email,1);
                     config.setCookie("first_name",JSON.parse(jsonPayload).given_name,1);
                     config.setCookie("last_name",JSON.parse(jsonPayload).family_name,1);
+
+                    config.create_user(token)
                     config.get_user(JSON.parse(jsonPayload).email)
                     userHasAuthenticated(true)
                 }

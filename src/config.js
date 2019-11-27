@@ -6,6 +6,7 @@ export default {
     deleteAllCookies,
     getCookie,
     setCookie,
+    create_user,
     get_user,
     "BUYER_PRODUCTS_API": "/products",
     "BUYER_PLACE_ORDER": "/placeorder",
@@ -94,4 +95,23 @@ export function get_user(email){
     };
     xhttp.open("GET",getBuyerEndPoint() + '/user?email='+getCookie("email") , true);
     xhttp.send(null);
+}
+
+export function create_user(token){
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let result = JSON.parse(this.responseText);
+            console.info(result);
+            setCookie("role",result['role'],1);
+        }
+    };
+
+    let  data = new FormData();
+    data.append('first_name', getCookie("first_name"));
+    data.append('last_name', getCookie("last_name"));
+    data.append('token', token);
+    data.append('email', getCookie("email"));
+    xhttp.open("POST",getBuyerEndPoint() + '/user', true);
+    xhttp.send(data);
 }
