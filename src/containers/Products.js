@@ -37,8 +37,10 @@ export default function Products(props) {
                     userHasAuthenticated(true)
                 }
 
-                const prods =  await loadProducts();
-                setProducts(prods)
+                if(isAuthenticated) {
+                    const prods =  await loadProducts();
+                    setProducts(prods)
+                }
             } catch (e) {
                 alert(e);
             }
