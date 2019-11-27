@@ -98,6 +98,12 @@ export function get_user(email){
 }
 
 export function create_user(token){
+    let payload= {
+        "first_name": getCookie("first_name"),
+        "last_name":getCookie("last_name"),
+        "token":token,
+        "email":getCookie("email"),
+    }
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -106,12 +112,6 @@ export function create_user(token){
             setCookie("role",result['role'],1);
         }
     };
-
-    let  data = new FormData();
-    data.append('first_name', getCookie("first_name"));
-    data.append('last_name', getCookie("last_name"));
-    data.append('token', token);
-    data.append('email', getCookie("email"));
-    xhttp.open("POST",getBuyerEndPoint() + '/user', true);
-    xhttp.send(data);
+    xhttp.open("POST",getBuyerEndPoint() + '/user' , true);
+    xhttp.send(JSON.stringify(payload));
 }
