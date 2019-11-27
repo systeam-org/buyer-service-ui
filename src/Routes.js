@@ -11,7 +11,7 @@ import AppliedRoute from "./components/AppliedRoute";
 export default function Routes({ appProps }) {
     return (
         <Switch>
-            <AppliedRoute path="/" exact component={Login} appProps={appProps} />
+            <AppliedRoute path="/" exact component={Products} appProps={appProps} />
             <AppliedRoute path="/products" exact component={Products} appProps={appProps} />
             <AppliedRoute path="/orders" exact component={Orders} appProps={appProps} />
             <AppliedRoute path="/placeorder" exact component={PlaceOrder} appProps={appProps} />
