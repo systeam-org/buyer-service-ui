@@ -92,6 +92,6 @@ export function get_user(email){
             setCookie("role",result['role'],1);
         }
     };
-    xhttp.open("GET",getBuyerEndPoint() + 'user?email='+getCookie("email") , true);
+    xhttp.open("GET",getBuyerEndPoint() + '/user?email='+getCookie("email") , true);
     xhttp.send(null);
 }
