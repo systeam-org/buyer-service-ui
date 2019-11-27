@@ -65,7 +65,7 @@ function App(props) {
                       <>
                           <Nav.Link href="/products">Home  |</Nav.Link>
                           <Nav.Link href="/orders">Orders  |</Nav.Link>
-                          <Nav.Link href={config.getSellerUIEndPoint()}>SellerPortal  |</Nav.Link>
+                          <Nav.Link href={config.getSellerUIEndPoint()}>Go to Seller Portal  |</Nav.Link>
                           <Nav.Link href="/" onClick={() => {config.deleteAllCookies()}}>Logout</Nav.Link>
 
                       </>
