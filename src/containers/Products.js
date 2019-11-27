@@ -111,7 +111,7 @@ export default function Products(props) {
             !isAuthenticating &&
             <div>
                 <h1 id='title'></h1>
-                <table>
+                <table class="table">
                     <tbody>
                     <tr>{isAuthenticated && renderProductsTableHeader()}</tr>
                     {isAuthenticated && renderProductsTableData()}

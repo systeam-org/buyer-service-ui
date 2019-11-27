@@ -71,7 +71,7 @@ export default function SellerProducts(props) {
         return (
             <div>
                 <h1 id='title'>Orders</h1>
-                <table>
+                <table class="table">
                     <tbody>
                     <tr>{!isLoading && renderOrdersTableHeader()}</tr>
                     {renderOrdersTableData()}

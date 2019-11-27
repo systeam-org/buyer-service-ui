@@ -110,7 +110,7 @@ export default function PlaceOrder(props) {
         return (
             <div>
                 <h1 id='title'>Place Order</h1>
-                <table>
+                <table class="table">
                     <tbody>
                     <tr>{!isLoading && renderProductsTableHeader()}</tr>
                     {renderProductsTableData()}
