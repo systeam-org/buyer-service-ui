@@ -26,9 +26,9 @@ export default function SellerProducts(props) {
     }, [props.isAuthenticated]);
 
     function loadOrders() {
-        return axios.get(config.BUYER_BASE_URL + config.BUYER_ORDERS, {
+        return axios.get(config.getBuyerEndPoint() + config.BUYER_ORDERS, {
             params: {
-                email: 'buyer@gmail.com'
+                email: config.getCookie("email")
             }
         }).then(res => {
             return res.data

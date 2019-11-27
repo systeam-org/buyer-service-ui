@@ -6,8 +6,6 @@ import "./Products.css"
 import config from "../config";
 import LoaderButton from "../components/LoaderButton";
 
-
-
 export default function PlaceOrder(props) {
     const [products, setProducts] = useState([]);
     const [product, setProduct] = useState([]);
@@ -29,44 +27,6 @@ export default function PlaceOrder(props) {
 
     function loadProducts() {
         return [props.location.state.product]
-        // return axios.get(config.SELLER_BASE_URL + config.SELLER_PRODUCTS_API, {
-        //     params: {
-        //         email: 'seller1@gmail.com'
-        //     }
-        // }).then(res => {
-        //     return res.data
-        // })
-    }
-
-    function renderProductsList(products) {
-        return [{}].concat(products).map((product, i) =>
-            i !== 0 ? (
-                <LinkContainer key={product.product_id} to={`/products/${product.product_id}`}>
-                    <ListGroupItem header={product.product_name.trim().split("\n")[0]}>
-                        {"Product Description: " + product.description}
-                    </ListGroupItem>
-                </LinkContainer>
-
-            ) : (
-                <LinkContainer key="new" to="/products/new">
-                    <ListGroupItem>
-                        <h4>
-                            <b>{"\uFF0B"}</b> Add a new product
-                        </h4>
-                    </ListGroupItem>
-                </LinkContainer>
-            )
-        );
-    }
-
-
-    function renderLander() {
-        return (
-            <div className="lander">
-                <h1></h1>
-                <p></p>
-            </div>
-        );
     }
 
     function camelCase(str) {
@@ -82,8 +42,6 @@ export default function PlaceOrder(props) {
             //return <th key={index}>{camelCase(key.toUpperCase().replace('_', "  "))}</th>
             return <th key={index}>{key}</th>
         })
-
-
     }
 
     async function handlePlaceOrder(event) {
@@ -110,7 +68,7 @@ export default function PlaceOrder(props) {
         {
             "total_amount": total_amount,
             "created_on": new Date().toISOString().slice(0, 19).replace('T', ' '),
-            "email" : "buyer@gmail.com",
+            "email" : config.getCookie("email"),
             "products":
             [
                 {
@@ -124,7 +82,7 @@ export default function PlaceOrder(props) {
 
         console.info(rawData)
 
-        return axios.post(config.BUYER_BASE_URL + config.BUYER_PLACE_ORDER,rawData).then(res => {
+        return axios.post(config.getBuyerEndPoint() + config.BUYER_PLACE_ORDER,rawData).then(res => {
             return res.data
         })
     }

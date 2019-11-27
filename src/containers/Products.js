@@ -6,8 +6,6 @@ import "./Products.css"
 import config from "../config";
 import LoaderButton from "../components/LoaderButton";
 
-
-
 export default function Products(props) {
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -21,14 +19,13 @@ export default function Products(props) {
             }
             setIsLoading(false);
         }
-
         onLoad();
     }, [props.isAuthenticated]);
 
     function loadProducts() {
-        return axios.get(config.BUYER_BASE_URL + config.BUYER_PRODUCTS_API, {
+        return axios.get(config.getBuyerEndPoint() + config.BUYER_PRODUCTS_API, {
             params: {
-                email: 'buyer@gmail.com'
+                email: config.getCookie("email")
             }
         }).then(res => {
             return res.data
