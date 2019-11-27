@@ -43,7 +43,7 @@ export default function SellerProducts(props) {
     }
 
     function renderOrdersTableHeader() {
-        let header = ["Order ID", 'Product Name', "Porduct Quantity", "Total Amount", "Status"]
+        let header = ["Order ID", 'Product Name', "Product Quantity", "Total Amount", "Status"]
         return header.map((key, index) => {
             //return <th key={index}>{camelCase(key.toUpperCase().replace('_', "  "))}</th>
             return <th key={index}>{key}</th>
