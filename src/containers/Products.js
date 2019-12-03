@@ -91,7 +91,7 @@ export default function Products(props) {
                     <td>{category_name}</td>
                     <td>{product_name}</td>
                     <td>{description}</td>
-                    <td>${price}</td>
+                    <td>{price}</td>
                     <td>
                         <LinkContainer key="new" to={{
                             pathname: '/placeorder',

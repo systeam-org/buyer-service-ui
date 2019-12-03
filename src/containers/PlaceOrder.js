@@ -97,7 +97,7 @@ export default function PlaceOrder(props) {
                     <td>{category_name}</td>
                     <td>{product_name}</td>
                     <td>{description}</td>
-                    <td>${price}</td>
+                    <td>{price}</td>
                     <td>
                         <input type="text" className="form-control" id="orderQuantity" onChange={e => setQuantity(e.target.value)}/>
                     </td>
