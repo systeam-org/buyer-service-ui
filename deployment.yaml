@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
         - name: buyer-service-ui
-          image: systeamorg/buyer-service-ui:latest
+          image: systeamorg/buyer-service-ui
+          imagePullPolicy: Always
           env:
             - name: PORT
               value: "91"
