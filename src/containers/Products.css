@@ -7,5 +7,26 @@ th {
     background-color: #4CAF50;
     color: black;
 }
+.payment-container{
+    height:150px;
+    width:100%;
+}
+.payment-content{
+    margin:0 auto;
+}
+input,
+.StripeElement {
+    display: block;
+    margin: 10px 0 20px 0;
+    max-width: 90%;
+    padding: 10px 14px;
+    font-size: 1em;
+    font-family: 'Source Code Pro', monospace;
+    box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px, rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+    background: white;
+}
 
 tr:hover {background-color: #f5f5f5;}

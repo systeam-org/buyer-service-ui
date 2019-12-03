@@ -11,6 +11,7 @@ export default {
     "BUYER_PRODUCTS_API": "/products",
     "BUYER_PLACE_ORDER": "/placeorder",
     "BUYER_ORDERS": "/orders",
+    "PAYMENT":"/payment"
 }
 
 export function getLoginURL() {
