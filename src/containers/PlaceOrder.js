@@ -5,8 +5,9 @@ import axios from "axios"
 import "./Products.css"
 import config from "../config";
 import LoaderButton from "../components/LoaderButton";
+import {CardElement, injectStripe} from 'react-stripe-elements';
 
-export default function PlaceOrder(props) {
+ function PlaceOrder(props) {
     const [products, setProducts] = useState([]);
     const [product, setProduct] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -43,13 +44,38 @@ export default function PlaceOrder(props) {
             return <th key={index}>{key}</th>
         })
     }
+     function downloadURI(uri, name) {
+         console.log("@uri",uri)
+         var link = document.createElement("a");
+         link.download = name;
+         link.href = uri;
+         link.click();
+     }
+
+    function charge(token,total_amount){
+        return fetch(config.getBuyerEndPoint() + config.PAYMENT,{
+              method: 'post',
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                  stripeToken:token.id,
+                  amount:total_amount * 100,
+                  currency: "usd",
+                  description: "example",
+                  source: 'tok_visa'})
+          }).then(res => res.json())
+     }
 
     async function handlePlaceOrder(event) {
-        //event.preventDefault();
+
+        // event.preventDefault();
 
         setIsLoading(true);
+         let total_amount = props.location.state.product.price * quantity
 
         try {
+            const {token}= await props.stripe.createToken();
+            const pay = await charge(token,total_amount);
+            pay && downloadURI(pay.receipt_url);
             await placeOrder();
             props.history.push("/products");
         } catch (e) {
@@ -116,16 +142,21 @@ export default function PlaceOrder(props) {
                     {renderProductsTableData()}
                     </tbody>
                 </table>
-
-                <Button onClick={() => {handlePlaceOrder()}}>Place Order</Button>
-
+        <div className="payment-container">
+          <h1 id='title'>Payment Details</h1>
+          <div className="payment-content">
+        <CardElement style={{base: {fontSize: '18px', width:'100%'}}} />
+        </div>
+          </div>
+        <Button onClick={() => {handlePlaceOrder()}}>Place Order</Button>
             </div>
         )
     }
 
     return (
         <div className="Home">
-            { renderProducts()}
+        { renderProducts()}
         </div>
     );
 }
+export default injectStripe(PlaceOrder);
