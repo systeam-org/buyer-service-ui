@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: buyer-service-ui
-          image: systeamorg/buyer-service-ui
+          image: systeamorg/buyer-service-ui:latest
           env:
             - name: PORT
               value: "91"
