@@ -16,8 +16,14 @@ export default {
 
 export function getLoginURL() {
     //TODO: Needs to be replaced by Auth0 URL
-    return "https://client-systeambiz.auth.us-east-1.amazoncognito.com/login?client_id=7f3c2duj422jsn61eh6op5250s&" +
-        "response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri="
+    // return "https://client-systeambiz.auth.us-east-1.amazoncognito.com/login?client_id=7f3c2duj422jsn61eh6op5250s&" +
+    //     "response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri="
+    return "https://dev-kdfnbpck.auth0.com/authorize?response_type=id_token token" +
+        "&client_id=rmoOpsrDxD3wt7xDNxq9Zq9yk3f60Yf5" +
+        "&scope=openid profile email picture" +
+        "&state=STATE" +
+        "&nonce=NONCE" +
+        "&redirect_uri="
 }
 
 export function getBuyerEndPoint() {
@@ -33,10 +39,10 @@ export function getBuyerEndPoint() {
 export function getSellerUIEndPoint() {
 
     if (window.location.href.includes("localhost")){
-        return "http://localhost:30092"
+        return "http://localhost:30092/products"
 
     }else{
-        return "https://seller.systeambiz.com"
+        return getLoginURL() + "https://seller.systeambiz.com/products"
     }
 }
 
